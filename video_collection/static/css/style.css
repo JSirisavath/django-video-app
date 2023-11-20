@@ -1,0 +1,8 @@
+.nav_links {
+  margin: 10px;
+}
+
+.nav_links > a {
+  color: darkseagreen;
+  padding-right: 30px;
+}

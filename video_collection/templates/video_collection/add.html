@@ -1,0 +1,20 @@
+{% extends 'video_collection/base.html' %} {% block content %}
+
+<h2>Add new video</h2>
+<!-- Messages that was set from views.py will need to be displayed here to users -->
+{% for message in messages %}
+
+<li>{{message}}</li>
+
+{% endfor %}
+
+<!-- Post is adding to the db url -->
+<form method="POST" action="{%url 'add_video' %}">
+  {% csrf_token %}
+
+  <!-- New add video form -->
+  {{ new_video_form }}
+
+  <button type="submit">Add Video</button>
+</form>
+{% endblock %}

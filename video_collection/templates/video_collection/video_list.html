@@ -1,0 +1,40 @@
+{% extends 'video_collection/base.html' %} {% block content %}
+<h2>Video List</h2>
+
+<h3>Search Videos</h3>
+
+<form method="GET" action="{% url 'video_list' %}">
+  {{search_form}}
+
+  <!-- Button to search -->
+  <button type="submit">Search</button>
+</form>
+
+<a href="{% url 'video_list' %}">
+  <!-- This will be a regular button instead of having methods and actions because it is not part of the form tags, and  so it will only redirect to that page URL -->
+  <button>Clear Search</button>
+</a>
+
+<!-- Search video count, and pluralize method to add 's' if more than 1 vid -->
+<h3>{{videos|length}} Video{{videos|length|pluralize}}</h3>
+
+{% for video in videos %}
+<div>
+  <h3>{{video.name}}</h3>
+  <p>{{video.notes}}</p>
+  <!-- Embedding does not work for me as it cannot be found -->
+  <!-- <iframe
+    width="420"
+    height="315"
+    src="'https://www.youtube.com/embed/{{video.video_id}}"
+  ></iframe> -->
+  <!-- Not Found: /'https://www.youtube.com/embed/2DjM0lY4pbE
+[20/Nov/2023 00:21:25] "GET /'https://www.youtube.com/embed/2DjM0lY4pbE HTTP/1.1" 404 2721 -->
+  <p><a href="{{video.url}}" target="_blank">Video Link ▶️ </a></p>
+</div>
+
+{% empty %}
+
+<p>No Videos Found!</p>
+
+{% endfor %} {% endblock %}
